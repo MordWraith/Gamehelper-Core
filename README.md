@@ -1,23 +1,37 @@
 # Gamehelper Core
 
-English-only GameHelper distribution for Path of Exile 2, based on [Gordin/GameHelper2](https://github.com/Gordin/GameHelper2), with a fixed plugin set and signed updates via the launcher.
+English-only **Path of Exile 2** overlay for Windows x64 — a ready-made bundle based on [Gordin/GameHelper2](https://github.com/Gordin/GameHelper2), with selected community plugins and signed updates.
 
-**Version:** 1.0.0
+**Download:** [Releases](https://github.com/MordWraith/Gamehelper-Core/releases) · **Trust & updates:** [SECURITY.md](SECURITY.md) · **Credits:** [CREDITS.md](CREDITS.md)
 
-## Download & install
+## Download
 
-**Releases:** https://github.com/MordWraith/Gamehelper-Core/releases
+| What | Link |
+|------|------|
+| **Installer (recommended)** | [GameHelperDownloader.exe](https://github.com/MordWraith/Gamehelper-Core/releases/latest/download/GameHelperDownloader.exe) |
+| **Full ZIP** | [latest release ZIP](https://github.com/MordWraith/Gamehelper-Core/releases/latest) |
+| **All releases** | [Releases](https://github.com/MordWraith/Gamehelper-Core/releases/latest) |
 
-1. Download the latest release ZIP (or the downloader, if provided).
-2. Extract to a folder of your choice.
-3. Run `GameHelper.exe`.
+**Requires:** Windows x64 and the [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0).
 
-No .NET SDK or build tools required for normal use.
+## Install
+
+1. Use an **empty folder** — do not extract over an old install.
+2. Run **GameHelperDownloader.exe** there, or extract the full ZIP.
+3. Start **`GameHelper.exe`** (launcher). Do not start `GameHelper.App.exe` directly.
+4. Check **`VERSION.txt`** matches the release you downloaded.
 
 ## Updates
 
-Updates are delivered through the **launcher** (signed `manifest.json` from GitHub Releases).  
-You do not need to clone this repository or run any scripts to stay up to date.
+The launcher can download signed updates from GitHub Releases. Your settings (`configs/`, `Plugins/*/config/`) are **not** overwritten.
+
+You do **not** need this repository or any build tools to play or update. Details: [SECURITY.md](SECURITY.md).
+
+**No auto-update?** Install from the full ZIP only.
+
+## First run
+
+Enabled by default: **HealthBars**, **Radar**, **AutoHotKeyTrigger**. Other plugins are installed but off until you enable them in **Plugins**. Performance stats are off by default.
 
 ## Included plugins
 
@@ -31,22 +45,25 @@ You do not need to clone this repository or run any scripts to stay up to date.
 | | | [SimpleBars](https://github.com/MordWraith/SimpleBars) |
 | | | [AmanamuVoidAlert](https://github.com/MordWraith/AmanamuVoidAlert) |
 
-*Gordin plugins are bundled with [GameHelper2](https://github.com/Gordin/GameHelper2) — no separate repositories.*
+*Gordin plugins ship with [GameHelper2](https://github.com/Gordin/GameHelper2).*
 
-**Note:** LootTracker and LootValue can run together; you may see overlapping loot overlays.
+LootTracker and LootValue can run together; loot overlays may overlap.
+
+## Troubleshooting
+
+| Problem | What to try |
+|---------|-------------|
+| Wrong or mixed version | Fresh install in a **new empty folder**; read `VERSION.txt` |
+| Overlay does not attach | Run GameHelper with the **same admin level** as the game |
+| Blocked by Windows Defender | [SECURITY.md → false positives](SECURITY.md#windows-defender-and-antivirus-false-positives) |
+| Missing .NET runtime | Install [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0) |
 
 ## Source code
 
-This repository contains the **application source** (core, launcher, shared libraries, and bundled plugin sources) under GPLv3.
+This repo is the **application source** (GPLv3). Pre-built binaries are on [Releases](https://github.com/MordWraith/Gamehelper-Core/releases).
 
-To build from source you need the [.NET SDK](https://dotnet.microsoft.com/download):
-
-```powershell
-dotnet build GameOverlay.sln -c Release
-```
-
-Pre-built binaries with all plugins are published on the [Releases](https://github.com/MordWraith/Gamehelper-Core/releases) page.
+Developers: open [`GameOverlay.sln`](GameOverlay.sln), **Rebuild Solution** (Release), run `GameHelper.exe` from `GameHelper\bin\Release\net10.0-windows\win-x64\`. Needs the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0).
 
 ## License
 
-GPLv3 — see [LICENSE](LICENSE). Authors and upstream projects: [CREDITS.md](CREDITS.md).
+[GPLv3](LICENSE) — see [CREDITS.md](CREDITS.md) for authors and upstream projects.
