@@ -150,7 +150,7 @@ namespace GameHelper.Settings
         ///     Gets or sets a value indicating whether to show
         ///     the performance stats or not.
         /// </summary>
-        public bool ShowPerfStats = true;
+        public bool ShowPerfStats = false;
         
         /// <summary>
         ///     Gets or sets a value indicating whether to show PerformanceProfiler window or not.

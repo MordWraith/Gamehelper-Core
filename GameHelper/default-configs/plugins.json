@@ -1,0 +1,18 @@
+{
+  "AmanamuVoidAlert": { "Enable": false },
+  "Atlas": { "Enable": false },
+  "AuraTracker": { "Enable": false },
+  "AutoHotKeyTrigger": { "Enable": true },
+  "AutoPot": { "Enable": false },
+  "HealthBars": { "Enable": true },
+  "Hiveblood": { "Enable": false },
+  "LootTracker": { "Enable": false },
+  "LootValue": { "Enable": false },
+  "PlayerBuffBar": { "Enable": false },
+  "PreloadAlert": { "Enable": false },
+  "Radar": { "Enable": true },
+  "RitualHelper": { "Enable": false },
+  "RunecraftHelper": { "Enable": false },
+  "SekhemaHelper": { "Enable": false },
+  "SimpleBars": { "Enable": false }
+}

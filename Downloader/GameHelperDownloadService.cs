@@ -28,39 +28,24 @@ namespace Downloader
     {
 
         private const string DefaultPluginsJson = """
-
             {
-
-              "Atlas": { "Enable": true, "AutoStart": true },
-
-              "AutoHotKeyTrigger": { "Enable": false, "AutoStart": false },
-
-              "HealthBars": { "Enable": true, "AutoStart": true },
-
-              "PreloadAlert": { "Enable": false, "AutoStart": false },
-
-              "Radar": { "Enable": true, "AutoStart": true },
-
-              "RitualHelper": { "Enable": true, "AutoStart": true },
-
-              "RuneforgeHelper": { "Enable": true, "AutoStart": true },
-
-              "SekhemaHelper": { "Enable": true, "AutoStart": true },
-
-              "AuraTracker": { "Enable": true, "AutoStart": true },
-
-              "MapKillCounter": { "Enable": true, "AutoStart": true },
-
-              "PlayerBuffBar": { "Enable": true, "AutoStart": true },
-
-              "SimpleBars": { "Enable": false, "AutoStart": false },
-
-              "Hiveblood": { "Enable": true, "AutoStart": true },
-
-              "FarmTracker": { "Enable": true, "AutoStart": true }
-
+              "AmanamuVoidAlert": { "Enable": false },
+              "Atlas": { "Enable": false },
+              "AuraTracker": { "Enable": false },
+              "AutoHotKeyTrigger": { "Enable": true },
+              "AutoPot": { "Enable": false },
+              "HealthBars": { "Enable": true },
+              "Hiveblood": { "Enable": false },
+              "LootTracker": { "Enable": false },
+              "LootValue": { "Enable": false },
+              "PlayerBuffBar": { "Enable": false },
+              "PreloadAlert": { "Enable": false },
+              "Radar": { "Enable": true },
+              "RitualHelper": { "Enable": false },
+              "RunecraftHelper": { "Enable": false },
+              "SekhemaHelper": { "Enable": false },
+              "SimpleBars": { "Enable": false }
             }
-
             """;
 
 

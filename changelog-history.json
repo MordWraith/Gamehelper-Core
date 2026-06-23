@@ -1,0 +1,18 @@
+﻿{
+    "releases":  [
+                     {
+                         "version":  "1.0.0",
+                         "published":  "2026-06-23T20:45:01.3187112Z",
+                         "changelog":  [
+                                           "Version 1.0.0 release || Version 1.0.0 Release"
+                                       ]
+                     },
+                     {
+                         "version":  "-Version",
+                         "published":  "2026-06-23T20:26:47.2785065Z",
+                         "changelog":  [
+                                           "1.0.0"
+                                       ]
+                     }
+                 ]
+}
