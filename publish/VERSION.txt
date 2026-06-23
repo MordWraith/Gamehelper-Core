@@ -1,5 +1,0 @@
-﻿GameHelper 1.0.0
-Gebaut am: 2026-06-23T18:22:16.4409182Z (UTC)
-Quelle: local-build
-
-Pruefen: Rechtsklick auf GameHelper.App.exe -> Details -> Dateiversion

@@ -10,3 +10,35 @@
 
 configs/
 docs/
+
+# Build output (users get this from Releases, not from git)
+publish/
+publish-downloader/
+
+# Maintainer tooling (local only — not part of public source)
+maintain.cmd
+maintain.ps1
+maintain-gui.vbs
+MAINTAIN.local.md
+scripts/
+sync-plugin-repos.bat
+pull-external-plugins.bat
+
+# Secrets / local config
+github.config.json
+github.config.example.json
+update-signing.key
+update-signing.pub
+*.token
+.env
+
+# Nested plugin git repos
+Plugins/**/.git/
+
+# Runtime / local data
+imgui.ini
+update.config.json
+update.state.json
+Plugins/*/config/
+Plugins/*/price_cache.json
+Plugins/*/prices.json
