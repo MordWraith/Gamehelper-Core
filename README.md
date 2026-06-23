@@ -21,13 +21,17 @@ You do not need to clone this repository or run any scripts to stay up to date.
 
 ## Included plugins
 
-| Plugin | Source |
-|--------|--------|
-| AutoHotKeyTrigger, Radar, HealthBars, PreloadAlert, LootValue | Gordin |
-| Atlas, LootTracker, RunecraftHelper, SekhemaHelper | yokkenUA |
-| RitualHelper | [MordWraith/RitualHelper](https://github.com/MordWraith/RitualHelper) |
-| Autopot | [MordWraith/Autopot](https://github.com/MordWraith/Autopot) |
-| PlayerBuffBar, Hiveblood, AuraTracker, SimpleBars, AmanamuVoidAlert | MordWraith forks |
+| [Gordin](https://github.com/Gordin/GameHelper2) · GameHelper2 | [yokkenUA](https://github.com/yokkenUA) | [MordWraith](https://github.com/MordWraith) |
+|----------------------------------------------------------------|----------------------------------------|---------------------------------------------|
+| AutoHotKeyTrigger | [Atlas](https://github.com/yokkenUA/Atlas) | [RitualHelper](https://github.com/MordWraith/RitualHelper) |
+| Radar | [LootTracker](https://github.com/yokkenUA/LootTracker) | [Autopot](https://github.com/MordWraith/Autopot) |
+| HealthBars | [RunecraftHelper](https://github.com/yokkenUA/RunecraftHelper) | [PlayerBuffBar](https://github.com/MordWraith/PlayerBuffBar) |
+| PreloadAlert | [SekhemaHelper](https://github.com/yokkenUA/SekhemaHelper) | [Hiveblood](https://github.com/MordWraith/Hiveblood) |
+| LootValue | | [AuraTracker](https://github.com/MordWraith/AuraTracker) |
+| | | [SimpleBars](https://github.com/MordWraith/SimpleBars) |
+| | | [AmanamuVoidAlert](https://github.com/MordWraith/AmanamuVoidAlert) |
+
+*Gordin plugins are bundled with [GameHelper2](https://github.com/Gordin/GameHelper2) — no separate repositories.*
 
 **Note:** LootTracker and LootValue can run together; you may see overlapping loot overlays.
 
