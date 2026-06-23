@@ -1,0 +1,17 @@
+﻿=== GameHelper Verteilung ===
+
+Version: 1.0.0
+Gebaut:  2026-06-23T18:22:16.4409182Z (UTC)
+
+WICHTIG fuer den Empfaenger:
+1. In einen LEEREN Ordner entpacken (nicht ueber eine alte Installation legen).
+2. VERSION.txt pruefen - muss 1.0.0 zeigen.
+3. Beim ersten Start kann kurz ein schwarzes Fenster erscheinen (Update-Pruefung).
+
+Warum manchmal eine aeltere Version erscheint:
+- Der Auto-Updater laedt von GitHub Releases nach, wenn dort ein neueres manifest.json liegt.
+- Wird ueber eine alte Installation entpackt, bleiben alte Dateien liegen.
+
+Plugin-Credits: In GameHelper unter Plugins -> Spalte Ersteller (siehe CREDITS.md).
+
+Nach dem Entpacken: VERSION.txt oeffnen und Version ablesen.
