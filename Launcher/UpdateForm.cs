@@ -134,7 +134,7 @@ namespace Launcher
 
             this.MinimizeBox = false;
 
-            this.ClientSize = new Size(640, 520);
+            this.ClientSize = new Size(640, 524);
 
             this.BackColor = Bg;
 
@@ -399,11 +399,12 @@ namespace Launcher
 
 
             // Plugin update notification button — hidden until plugin check completes.
+            // Positioned below the primary/secondary buttons (which end at Y=488).
             this.pluginUpdateButton = CreateButton(
                 "Checking plugins...",
                 Color.FromArgb(55, 58, 72),
-                new Point(24, 496),
-                new Size(230, 28));
+                new Point(24, 492),
+                new Size(230, 24));
             this.pluginUpdateButton.Font = new Font("Segoe UI", 8.5f);
             this.pluginUpdateButton.Visible = false;
             this.pluginUpdateButton.Click += this.OnPluginUpdateClick;
