@@ -106,6 +106,8 @@ namespace Launcher
 
         private UpdateFormPhase phase = UpdateFormPhase.Checking;
 
+        private Button? pluginUpdateButton;
+
 
 
         internal bool ShouldStartGame { get; private set; }
@@ -396,6 +398,16 @@ namespace Launcher
 
 
 
+            // Plugin update notification button — hidden until plugin check completes.
+            this.pluginUpdateButton = CreateButton(
+                "Checking plugins...",
+                Color.FromArgb(55, 58, 72),
+                new Point(24, 496),
+                new Size(230, 28));
+            this.pluginUpdateButton.Font = new Font("Segoe UI", 8.5f);
+            this.pluginUpdateButton.Visible = false;
+            this.pluginUpdateButton.Click += this.OnPluginUpdateClick;
+
             this.Controls.Add(this.titleLabel);
 
             this.Controls.Add(this.subtitleLabel);
@@ -406,7 +418,7 @@ namespace Launcher
 
             this.Controls.Add(this.secondaryButton);
 
-
+            this.Controls.Add(this.pluginUpdateButton);
 
             this.Load += this.OnFormLoad;
 
@@ -718,6 +730,9 @@ namespace Launcher
         private async Task RunUpdateFlowAsync()
 
         {
+
+            // Start plugin update check in background (doesn't block game startup).
+            _ = this.CheckPluginsInBackgroundAsync();
 
             try
 
@@ -1352,6 +1367,73 @@ namespace Launcher
 
             }
 
+        }
+
+        private async Task CheckPluginsInBackgroundAsync()
+        {
+            try
+            {
+                var updates = await PluginUpdateChecker.CheckAsync(this.installDir).ConfigureAwait(true);
+                if (this.IsDisposed || !this.IsHandleCreated)
+                {
+                    return;
+                }
+
+                if (updates.Count == 0)
+                {
+                    // No plugin updates — keep button hidden.
+                    return;
+                }
+
+                var label = updates.Count == 1
+                    ? $"Plugin update: {updates[0].Name}"
+                    : $"Plugin updates available ({updates.Count})";
+
+                if (this.pluginUpdateButton != null)
+                {
+                    this.pluginUpdateButton.Text = label;
+                    this.pluginUpdateButton.BackColor = Color.FromArgb(92, 140, 240);
+                    this.pluginUpdateButton.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                LauncherLog.Write($"Plugin update check: {ex.Message}");
+            }
+        }
+
+        private void OnPluginUpdateClick(object? sender, EventArgs e)
+        {
+            var downloaderExe = PluginUpdateChecker.FindDownloaderExe(this.installDir);
+            if (downloaderExe == null)
+            {
+                MessageBox.Show(
+                    "GameHelperDownloader.exe not found.\n" +
+                    "Download it from the GitHub releases page to manage plugin updates.",
+                    "GameHelper",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
+
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = downloaderExe,
+                    Arguments = $"\"{this.installDir}\"",
+                    UseShellExecute = true,
+                });
+            }
+            catch (Exception ex)
+            {
+                LauncherLog.Write($"Open downloader: {ex.Message}");
+                MessageBox.Show(
+                    $"Could not open GameHelperDownloader.exe:\n{ex.Message}",
+                    "GameHelper",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
         }
 
     }

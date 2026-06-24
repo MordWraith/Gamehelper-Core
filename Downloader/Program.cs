@@ -2,42 +2,29 @@ namespace Downloader
 {
     using System;
     using System.IO;
-    using System.Threading;
     using System.Windows.Forms;
 
     internal static class Program
     {
         [STAThread]
-        private static int Main(string[] args)
+        private static void Main(string[] args)
         {
-            var force = false;
-            string? targetDir = null;
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
+            // Parse target dir from args (positional or --target).
+            string? targetDir = null;
             for (var i = 0; i < args.Length; i++)
             {
                 var arg = args[i];
-                if (arg is "--force" or "-f")
-                {
-                    force = true;
-                    continue;
-                }
-
                 if (arg is "--help" or "-h" or "/?")
                 {
                     PrintHelp();
-                    return 0;
+                    return;
                 }
 
-                if (arg is "--target" or "-t")
+                if ((arg is "--target" or "-t") && i + 1 < args.Length)
                 {
-                    if (i + 1 >= args.Length)
-                    {
-                        Console.Error.WriteLine(DownloaderLocalization.B(
-                            "Missing value for --target",
-                            "Fehlender Wert fuer --target"));
-                        return 1;
-                    }
-
                     targetDir = args[++i];
                     continue;
                 }
@@ -48,107 +35,25 @@ namespace Downloader
                 }
             }
 
+            // If no target provided, suggest default path next to the exe.
             if (string.IsNullOrWhiteSpace(targetDir))
             {
-                targetDir = PromptForTargetDirectory()
-                    ?? Path.Combine(AppContext.BaseDirectory, "GameHelper");
+                targetDir = Path.Combine(AppContext.BaseDirectory, "GameHelper");
             }
 
-            Console.WriteLine("=== GameHelper Download ===");
-            Console.WriteLine($"{DownloaderLocalization.B("Target folder", "Zielordner")}: {Path.GetFullPath(targetDir)}");
-            Console.WriteLine();
-
-            var service = new GameHelperDownloadService();
-            var progress = new Progress<string>(line => Console.WriteLine(line));
-
-            DownloadResult result;
-            try
-            {
-                result = service.DownloadAsync(targetDir, force, progress, CancellationToken.None)
-                    .GetAwaiter()
-                    .GetResult();
-            }
-            catch (Exception ex)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"{DownloaderLocalization.B("Error", "Fehler")}: {ex.Message}");
-                Console.ResetColor();
-                WaitForKey();
-                return 1;
-            }
-
-            Console.WriteLine();
-            if (result.ExitCode != 0)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(result.Message);
-                Console.ResetColor();
-                WaitForKey();
-                return result.ExitCode;
-            }
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(DownloaderLocalization.B(
-                "Done. GameHelper is installed in:",
-                "Fertig. GameHelper liegt in:"));
-            Console.WriteLine($"  {result.TargetDir}");
-            Console.ResetColor();
-            Console.WriteLine();
-            Console.WriteLine(DownloaderLocalization.B("Start with:", "Starten mit:"));
-            Console.WriteLine($"  {Path.Combine(result.TargetDir!, "GameHelper.exe")}");
-            WaitForKey();
-            return 0;
-        }
-
-        private static string? PromptForTargetDirectory()
-        {
-            try
-            {
-                Application.EnableVisualStyles();
-                using var dialog = new FolderBrowserDialog
-                {
-                    Description = DownloaderLocalization.B(
-                        "Choose target folder for GameHelper",
-                        "Zielordner fuer GameHelper waehlen"),
-                    UseDescriptionForTitle = true,
-                    SelectedPath = AppContext.BaseDirectory,
-                };
-
-                return dialog.ShowDialog() == DialogResult.OK
-                    ? dialog.SelectedPath
-                    : null;
-            }
-            catch
-            {
-                return null;
-            }
+            Application.Run(new DownloaderForm(targetDir));
         }
 
         private static void PrintHelp()
         {
             Console.WriteLine("GameHelperDownloader");
             Console.WriteLine();
-            Console.WriteLine(DownloaderLocalization.B("Usage:", "Verwendung:"));
-            Console.WriteLine("  GameHelperDownloader.exe [target folder] [--force]");
+            Console.WriteLine("Usage:");
+            Console.WriteLine("  GameHelperDownloader.exe [target folder]");
             Console.WriteLine("  GameHelperDownloader.exe --target \"D:\\Games\\GameHelper\"");
             Console.WriteLine();
-            Console.WriteLine(DownloaderLocalization.B(
-                "Without target folder: folder picker dialog, otherwise .\\GameHelper",
-                "Ohne Zielordner: Ordnerauswahl-Dialog, sonst .\\GameHelper"));
-        }
-
-        private static void WaitForKey()
-        {
-            if (!Environment.UserInteractive)
-            {
-                return;
-            }
-
-            Console.WriteLine();
-            Console.WriteLine(DownloaderLocalization.B(
-                "Press Enter to exit ...",
-                "Enter zum Beenden ..."));
-            Console.ReadLine();
+            Console.WriteLine("Opens a GUI to install or update GameHelper Core and plugins.");
+            Console.WriteLine("Plugin compilation requires .NET SDK and git to be installed.");
         }
     }
 }

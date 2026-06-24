@@ -31,6 +31,9 @@
     <Compile Include="..\Shared\UpdateStateHelper.cs" Link="Shared\UpdateStateHelper.cs" />
     <Compile Include="..\Shared\UpdateMigrationNotice.cs" Link="Shared\UpdateMigrationNotice.cs" />
     <Compile Include="..\Shared\VersionCompare.cs" Link="Shared\VersionCompare.cs" />
+    <Compile Include="..\Shared\PluginSources.cs" Link="Shared\PluginSources.cs" />
+    <Compile Include="..\Shared\PluginVersionStore.cs" Link="Shared\PluginVersionStore.cs" />
+    <Compile Include="..\Shared\GitHubApiHelper.cs" Link="Shared\GitHubApiHelper.cs" />
   </ItemGroup>
 
   <Target Name="CopyLauncherToOutput" AfterTargets="Build">

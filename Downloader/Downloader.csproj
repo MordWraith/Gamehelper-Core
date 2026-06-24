@@ -42,6 +42,10 @@
     <Compile Include="..\Shared\UpdateFileHashesCatalog.cs" Link="Shared\UpdateFileHashesCatalog.cs" />
     <Compile Include="..\Shared\UpdateZipPackage.cs" Link="Shared\UpdateZipPackage.cs" />
     <Compile Include="..\Shared\UpdateStateHelper.cs" Link="Shared\UpdateStateHelper.cs" />
+    <Compile Include="..\Shared\PluginSources.cs" Link="Shared\PluginSources.cs" />
+    <Compile Include="..\Shared\PluginVersionStore.cs" Link="Shared\PluginVersionStore.cs" />
+    <Compile Include="..\Shared\GitHubApiHelper.cs" Link="Shared\GitHubApiHelper.cs" />
+    <Compile Include="..\Shared\PluginBuildHelper.cs" Link="Shared\PluginBuildHelper.cs" />
   </ItemGroup>
 
 
